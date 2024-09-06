@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import Auctioncard from "./Auctioncard";
-import AuctionForm from "./AuctionForm";
+import AuctionForm from "./Auctionform";
 import axios from "axios";
 const CustomerDashboard = () => {
   function checkUserLoggedIn() {
@@ -167,7 +167,7 @@ const CustomerDashboard = () => {
         <input
           type="text"
           className="px-3 py-2 border rounded-md mr-2"
-          placeholder="Name of the car"
+          placeholder="Name of the item"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -197,7 +197,7 @@ const CustomerDashboard = () => {
       </div>
 
       <div className="ml-5 font-semibold my-10 md:text-2xl text-xl relative">
-        Auction Your Car
+        Auction Your Item
         <div className="absolute h-0.5 w-full bg-red-200 bottom-0"></div>
       </div>
 
@@ -220,7 +220,7 @@ const CustomerDashboard = () => {
               </th>
 
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
-                Car Model{" "}
+                Item Model{" "}
               </th>
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
                 Owner's Email
@@ -259,7 +259,7 @@ const CustomerDashboard = () => {
         </table>
       </div>
       <div className="ml-5 font-semibold my-10 text-2xl relative">
-        Bids On My Car
+        Bids On My Item
         <div className="absolute h-0.5 w-full bg-gray-800 bottom-0"></div>
       </div>
       <div className=" flex flex-wrap mx-5 my-10 gap-24 overflow-auto">
@@ -271,7 +271,7 @@ const CustomerDashboard = () => {
               </th>
 
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
-                Car Model{" "}
+                Item Model{" "}
               </th>
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
                 Bidder's Email
