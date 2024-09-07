@@ -4,7 +4,7 @@ const createAuction = async (req, res) => {
   try {
     const newAuction = new Auction({
       email: req.body.email,
-      carName: req.body.carName,
+      itemName: req.body.itemName,
       modelName: req.body.modelName,
       modelYear: req.body.modelYear,
       startingPrice: req.body.startingPrice,
@@ -56,7 +56,7 @@ const updateAuction = async (req, res) => {
     const auction = await Auction.findOne({ _id: req.params.id });
 
     if (auction) {
-      auction.carName = req.body.carName;
+      auction.itemName = req.body.itemName;
       auction.modelName = req.body.modelName;
       auction.modelYear = req.body.modelYear;
       auction.startingPrice = req.body.startingPrice;
