@@ -71,7 +71,7 @@ const AuctionForm = () => {
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-              htmlFor="carName"
+              htmlFor="itemName"
             >
               Item Name
             </label>
@@ -93,7 +93,7 @@ const AuctionForm = () => {
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="carModel"
+              id="itemModel"
               type="text"
               placeholder="Enter your item model"
               value={itemModel}
@@ -209,13 +209,13 @@ const AuctionForm = () => {
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="car-image"
+              id="item-image"
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
             />
             <p className="text-gray-600 text-xs italic mt-2">
-              Upload an image for the car
+              Upload an image for the item
             </p>
           </div>
         </div>
