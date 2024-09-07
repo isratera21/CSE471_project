@@ -7,15 +7,6 @@ const registerCustomer = async (req, res) => {
   const { name, email, password } = req.body;
   const isAdded = await Customer.findOne({ email: email });
 
-  if (isAdded) {
-    const token = signInToken(isAdded);
-    return res.send({
-      token,
-      _id: isAdded._id,
-      name: isAdded.name,
-      email: isAdded.email,
-    });
-  } else {
     const newUser = new Customer({
       name,
       email,
@@ -28,24 +19,10 @@ const registerCustomer = async (req, res) => {
       _id: newUser._id,
       name: newUser.name,
       email: newUser.email,
-      message: "Email Verified, Please Login Now!",
     });
-  }
+  
 };
 
-const addAllCustomers = async (req, res) => {
-  try {
-    await Customer.deleteMany();
-    await Customer.insertMany(req.body);
-    res.send({
-      message: "Added all users successfully!",
-    });
-  } catch (err) {
-    res.status(500).send({
-      message: err.message,
-    });
-  }
-};
 
 const loginCustomer = async (req, res) => {
   try {
@@ -192,10 +169,6 @@ module.exports = {
   registerCustomer,
   addAllCustomers,
   signUpWithProvider,
-  verifyEmailAddress,
-  forgetPassword,
-  changePassword,
-  resetPassword,
   getAllCustomers,
   getCustomerById,
   updateCustomer,
