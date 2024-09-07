@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Video from "../assets/Free Video Background Loop_ Auction Hammer.mp4";
-import Image from "../assets/Black_and_Red_Modern_Automotive_Car_Logo__2_-removebg-preview.png";
 import Audio from "../assets/Most Happy Background Music For Videos.mp3";
 const Landingpage = () => {
   useEffect(() => {
