@@ -130,19 +130,7 @@ const CustomerDashboard = () => {
       usercardata?.length === 0 ? "" : "shake 0.5s ease-in-out infinite",
   };
 
-
-  function changeStatus(obj_id) {
-    console.log(obj_id);
-    axios
-      .get(`http://localhost:3001/api/auctoin/bid/pay/${obj_id}`)
-      .then((response) => {
-        console.log("Success:", response.data);
-        // Reload the page after the request is successful
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+  
   }
   return (
     <>
