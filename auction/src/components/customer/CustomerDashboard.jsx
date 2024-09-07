@@ -174,7 +174,7 @@ const CustomerDashboard = () => {
               <Auctioncard
                 key={index} // Assuming each item has a unique 'id'. If not, use 'index'.
                 imagelink={item.image}
-                carname={item.carName}
+                itemname={item.itemName}
                 details={`${item.modelYear} ${item.modelName}, ${item.details}`}
                 startbid={item.startingPrice}
                 id={item._id}
