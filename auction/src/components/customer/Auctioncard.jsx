@@ -78,7 +78,7 @@ const Auctioncard = ({
     <>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 ">
         <div className="relative">
-          <img className="rounded-t-lg" src={imagelink} alt="car" />
+          <img className="rounded-t-lg" src={imagelink} alt="items" />
           <div className="absolute top-0 right-0 bg-black bg-opacity-50 text-white p-2">
             <span id="timer">{timer}</span>
           </div>
@@ -166,9 +166,7 @@ const Auctioncard = ({
                     placeholder="Enter your bid"
                     className="mt-2 p-2 border border-gray-300 rounded-md w-full"
                   />
-                  <h1 className="text-lg font-medium text-gray-900 mt-4">
-                    Please pay BDT 1000 through Bkash at 01727260141:
-                  </h1>
+
                   <input
                     required
                     type="text"
