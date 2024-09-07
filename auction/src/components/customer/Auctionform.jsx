@@ -137,7 +137,7 @@ const AuctionForm = () => {
           <div className="w-full px-3">
             <label
               className="block uppercase tracking-wide text-white font-bold mb-2"
-              htmlFor="carDetails"
+              htmlFor="Details"
             >
               Item Details
             </label>
