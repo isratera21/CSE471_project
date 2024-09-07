@@ -14,13 +14,7 @@ const {
   deleteCustomer,
   addAllCustomers,
 } = require("../controller/customerController");
-const {
-  passwordVerificationLimit,
-  emailVerificationLimit,
-} = require("../lib/email-sender/sender");
 
-//verify email
-router.post("/verify-email", emailVerificationLimit, verifyEmailAddress);
 
 //register a user
 router.post("/register", registerCustomer);
