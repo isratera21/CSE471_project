@@ -131,39 +131,6 @@ const bidAuctionbyId = async (req, res) => {
   }
 };
 
-const bidpayId = async (req, res) => {
-  const auctionId = req.params.id; // Extract auction ID from URL
-  const { trxnid, email } = req.body; // Extract bidder transaction ID and email from request body
-
-  try {
-    // Find the auction document by ID
-    let auction = await Auction.findById(auctionId);
-
-    if (!auction) {
-      return res.status(404).send("Auction not found");
-    }
-
-    // Find the bidder and update payment status
-    const bidderIndex = auction.bidders.findIndex(
-      (bidder) => bidder.bidtrnx === trxnid && bidder.bidderEmail === email
-    );
-    if (bidderIndex === -1) {
-      return res.status(404).send("Bidder not found");
-    }
-
-    auction.bidders[bidderIndex].payment = true; // Update payment status to true
-
-    // Save the updated auction
-    const updatedAuction = await auction.save();
-
-    // Send the updated auction data as a response
-    res.status(200).json(updatedAuction);
-  } catch (error) {
-    // Handle any errors
-    res.status(500).send("Server Error: " + error.message);
-  }
-};
-
 const bidpayStripe = async(req,res) =>{
   
 }
