@@ -203,7 +203,7 @@ const AuctionForm = () => {
           <div className="w-full px-3 mt-2">
             <label
               className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-              htmlFor="car-image"
+              htmlFor="item-image"
             >
               Add Image
             </label>
