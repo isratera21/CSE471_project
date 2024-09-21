@@ -5,7 +5,6 @@ import LoginFrom from "./components/auth/LoginFrom";
 import RegForm from "./components/auth/RegForm";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import CustomerDashboard from "./components/customer/CustomerDashboard";
-import ChangePass from "./components/auth/ChangePass";
 import Landingpage from "./components/LandingPage/Landingpage";
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
         <Route path="/customer" element={<CustomerDashboard />} />
         <Route path="/signup" element={<RegForm />} />
         <Route path="/login" element={<LoginFrom />} />
-        <Route path="/changepass" element={<ChangePass />} />
+  
       </Routes>
     </Router>
   );

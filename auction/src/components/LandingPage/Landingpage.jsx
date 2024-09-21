@@ -21,18 +21,13 @@ const Landingpage = () => {
           loop
           muted
           playsInline
-          src={Video} 
+          src={Video} // Replace with your video file path
         ></video>
         <div className="absolute inset-0 bg-black opacity-60"></div>
       </div>
       {/* Text in the Middle */}
-      <div className="flex flex-col gap-4 absolute inset-0 items-center justify-center">
+      <div className="flex flex-col gap-2 absolute inset-0 items-center justify-center">
 
-        <Link to="/customer">
-          <button className="rounded-md shadow-sm bg-gray-800 hover:bg-gray-900">
-            Explore
-          </button>
-        </Link>
       </div>
     </div>
   );

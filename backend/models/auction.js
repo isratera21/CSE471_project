@@ -35,7 +35,7 @@ const auctionSchema = new mongoose.Schema(
       require: true,
     },
 
-    itemName: {
+    carName: {
       type: String,
       required: true,
     },

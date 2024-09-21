@@ -34,19 +34,11 @@ const Auctioncard = ({
   };
 
   const submitBid = async () => {
-    // Uncomment and use validation if needed
-    // if (bidPrice.trim() === '') {
-    //   alert('Please enter a bid amount.');
-    //   return;
-    // }
-    // if (tranxd.trim() === '') {
-    //   alert('Please enter a transaction id');
-    //   return;
-    // }
+
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/auctoin/bid/${id}`,
+        `http://localhost:3001/api/auction/bid/${id}`,
         {
           email: userEmail,
           trxnid: tranxd,
@@ -55,8 +47,6 @@ const Auctioncard = ({
         }
       );
 
-      // Handle response here if needed
-      // console.log(response.data);
 
       alert(`Bid submitted! Price: ${bidPrice}`);
     } catch (err) {
@@ -78,7 +68,7 @@ const Auctioncard = ({
     <>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 ">
         <div className="relative">
-          <img className="rounded-t-lg" src={imagelink} alt="items" />
+          <img className="rounded-t-lg" src={imagelink} alt="car" />
           <div className="absolute top-0 right-0 bg-black bg-opacity-50 text-white p-2">
             <span id="timer">{timer}</span>
           </div>
@@ -166,13 +156,15 @@ const Auctioncard = ({
                     placeholder="Enter your bid"
                     className="mt-2 p-2 border border-gray-300 rounded-md w-full"
                   />
-
+                  <h1 className="text-lg font-medium text-gray-900 mt-4">
+                    Please enter your transaction id:
+                  </h1>
                   <input
                     required
                     type="text"
                     value={tranxd}
                     onChange={(e) => setTrnxd(e.target.value)}
-                    placeholder="Enter trnxd id"
+                    placeholder="Enter transanction id"
                     className="mt-2 p-2 border border-gray-300 rounded-md w-full"
                   />
                   <div className="mt-4 flex justify-end">

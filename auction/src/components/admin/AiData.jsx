@@ -9,7 +9,7 @@ const AiData = () => {
   const [command, setCommand] = useState("");
 
   const llm = new OpenAI({
-    apiKey: "cf1dd8aa9641b9278d212c4e1e7c2b645c2629fcdbd63507c3a74e7875f90e63",
+    apiKey: "d3c27ada12218fcb56c8629276c7c124aa97a08d7cd02a71ca4c016748b2a9e2",
     baseURL: "https://api.together.xyz/v1",
     dangerouslyAllowBrowser: true,
   });
@@ -17,7 +17,7 @@ const AiData = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/api/auctoin/getallauctoin"
+        "http://localhost:3001/api/auction/getallauction"
       );
       setData(response.data);
     } catch (error) {
@@ -55,7 +55,7 @@ const AiData = () => {
   };
 
   const filteredData2 = data?.filter((item) =>
-    item.carName.toLowerCase().includes(searchQuery2.toLowerCase())
+    item.carName.includes(searchQuery2)
   );
 
   return (

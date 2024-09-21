@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import Auctioncard from "./Auctioncard";
-import AuctionForm from "./Auctionform";
+import Auctionform from "./Auctionform";
 import axios from "axios";
 const CustomerDashboard = () => {
   function checkUserLoggedIn() {
     const token = localStorage.getItem("token");
-    let userLoggedIn = true;
+    let userLoggedIn = false;
 
     if (token) {
       userLoggedIn = true;
@@ -32,7 +32,7 @@ const CustomerDashboard = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/api/auctoin/getallauctoin"
+        "http://localhost:3001/api/auction/getallauction"
       );
       setData(response.data);
     } catch (error) {
@@ -43,7 +43,7 @@ const CustomerDashboard = () => {
   const fetchuserData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/auctoin/${userEmail}`
+        `http://localhost:3001/api/auction/${userEmail}`
       );
       setUsercardata(response.data);
     } catch (error) {
@@ -96,14 +96,6 @@ const CustomerDashboard = () => {
     closeModal();
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // Handle search button click
-  const handleSearch = () => {
-    // Perform search logic with the searchTerm
-    console.log(`Searching for: ${searchTerm}`);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -130,41 +122,35 @@ const CustomerDashboard = () => {
       usercardata?.length === 0 ? "" : "shake 0.5s ease-in-out infinite",
   };
 
-  
+  const redirectToWhatsApp = () => {
+    // Replace 'whatsappphonenumber' with the actual WhatsApp phone number
+    // including the country code but without any leading zeros, brackets, or dashes.
+    const phoneNumber = "+8801727260141";
+    // Construct the WhatsApp URL
+    const whatsappUrl = `https://wa.me/${phoneNumber}`;
+    // Redirect the user to the WhatsApp URL
+    window.location.href = whatsappUrl;
+  };
+
+  function changeStatus(obj_id) {
+    console.log(obj_id);
+    axios
+      .get(`http://localhost:3001/api/auction/bid/pay/${obj_id}`)
+      .then((response) => {
+        console.log("Success:", response.data);
+        // Reload the page after the request is successful
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
   return (
     <>
       <div className=" flex flex-row justify-between ml-5  mt-10 relative">
-        <div className="absolute h-0.5 w-full bg-gray-800 bottom-0"></div>
+        <div className="absolute h-0.5 w-full bg-gray-900 bottom-0"></div>
         <p className=" font-semibold md:text-2xl text-lg ">On Going Auctions</p>
-        <button
-          className={`rounded shadow-sm text-white ${
-            usercardata?.length === 0
-              ? "bg-gray-800 hover:bg-gray-900"
-              : "bg-red-700 hover:bg-red-900"
-          } mr-4 mb-4`}
-          style={buttonStyle}
-          onClick={openModal}
-        >
-          Show Notification
-        </button>
 
-      </div>
-
-      <div className="flex items-center mt-3 ml-5">
-        <input
-          type="text"
-          className="px-3 py-2 border rounded-md mr-2"
-          placeholder="Name of the item"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
       </div>
 
       <div className="flex flex-wrap mx-5 mt-10 gap-24 overflow-auto">
@@ -174,7 +160,7 @@ const CustomerDashboard = () => {
               <Auctioncard
                 key={index} // Assuming each item has a unique 'id'. If not, use 'index'.
                 imagelink={item.image}
-                itemname={item.itemName}
+                carname={item.carName}
                 details={`${item.modelYear} ${item.modelName}, ${item.details}`}
                 startbid={item.startingPrice}
                 id={item._id}
@@ -185,19 +171,37 @@ const CustomerDashboard = () => {
       </div>
 
       <div className="ml-5 font-semibold my-10 md:text-2xl text-xl relative">
-        Auction Your Item
-        <div className="absolute h-0.5 w-full bg-red-200 bottom-0"></div>
+        Auction Your Car
+        <div className="absolute h-0.5 w-full bg-gray-800 bottom-0"></div>
       </div>
 
-      <div className="flex justify-center bg-green-800 rounded-[50px] shadow-lg md:mx-0 mx-5">
-        <AuctionForm />
+      <div className="flex justify-center bg-gray-900 rounded-[50px] shadow-lg md:mx-0 mx-5">
+        <Auctionform />
       </div>
 
+      <div className="ml-5 font-semibold my-10 md:text-2xl text-xl relative">
+        My Auctions
+        <div className="absolute h-0.5 w-full bg-gray-800 bottom-0"></div>
+      </div>
 
+      <div className="flex flex-wrap mx-5 mt-10 gap-24 overflow-auto  ">
+        {usercardata?.map((item, index) => (
+          <Auctioncard
+            key={index} // Assuming each item has a unique 'id'. If not, use 'index'.
+            imagelink={item.image}
+            carname={item.carName}
+            details={`${item.modelYear} ${item.modelName}, ${item.details}`}
+            startbid={item.startingPrice}
+            placebid={false}
+            id={item._id}
+            // timer={/* logic to calculate remaining time based on item.auctionEndTime */}
+          />
+        ))}
+      </div>
 
       <div className="ml-5 font-semibold my-10 text-2xl relative">
         My Bids
-        <div className="absolute h-0.5 w-full bg-red-800 bottom-0"></div>
+        <div className="absolute h-0.5 w-full bg-gray-800 bottom-0"></div>
       </div>
       <div className=" flex flex-wrap mx-5 my-10 gap-24 overflow-auto">
         <table id="bookingTable" className="w-full border-collapse">
@@ -208,7 +212,7 @@ const CustomerDashboard = () => {
               </th>
 
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
-                Item Model{" "}
+                Car Model{" "}
               </th>
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
                 Owner's Email
@@ -247,7 +251,7 @@ const CustomerDashboard = () => {
         </table>
       </div>
       <div className="ml-5 font-semibold my-10 text-2xl relative">
-        Bids On My Item
+        Bids On My Car
         <div className="absolute h-0.5 w-full bg-gray-800 bottom-0"></div>
       </div>
       <div className=" flex flex-wrap mx-5 my-10 gap-24 overflow-auto">
@@ -259,7 +263,7 @@ const CustomerDashboard = () => {
               </th>
 
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
-                Item Model{" "}
+                Car Model{" "}
               </th>
               <th className="w-14 h-8 px-5 py-1.5 bg-white rounded shadow">
                 Bidder's Email
@@ -341,39 +345,6 @@ const CustomerDashboard = () => {
             >
               &#8203;
             </span>
-            <div
-              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-headline"
-            >
-              {/* Your modal content goes here */}
-              <div className=" flex flex-col items-center p-6">
-                <h2 className="text-xl font-semibold mb-4">Notifications</h2>
-                {usercardata?.map((item1) =>
-                  item1.bidders?.map((item2, index) =>
-                    // Check if item2.bidderEmail is not empty
-                    item2.bidderEmail ? (
-                      <p key={index} className="my-2">
-                        {item2.bidderEmail} bidded on your car.
-                      </p>
-                    ) : null
-                  )
-                )}
-
-                {/* Show "No notifications" if the list is empty */}
-                {usercardata &&
-                  !usercardata.some((item) =>
-                    item.bidders?.some((bidder) => bidder.bidderEmail)
-                  ) && <p>No notifications</p>}
-                <button
-                  className="mt-4 bg-gray-800 text-white rounded px-4 py-2 hover:bg-gray-900 "
-                  onClick={closeModal}
-                >
-                  Close Modal
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       )}

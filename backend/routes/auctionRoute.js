@@ -15,7 +15,7 @@ const {
 router.post("/createauction", createAuction);
 
 // get all auctions
-router.get("/getallauctoin", getAllAuctions);
+router.get("/getallauction", getAllAuctions);
 
 // get a specific auction by ID
 router.get("/:email", getAuctionById);

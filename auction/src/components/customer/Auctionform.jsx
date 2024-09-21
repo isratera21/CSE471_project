@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const AuctionForm = () => {
-  const [itemName, setItemName] = useState("");
-  const [itemModel, setItemModel] = useState("");
+const Auctionform = () => {
+  const [carName, setCarName] = useState("");
+  const [carModel, setCarModel] = useState("");
   const [modelYear, setModelYear] = useState("");
   const [date, setDate] = useState("");
   const [details, setDetails] = useState("");
@@ -29,11 +29,11 @@ const AuctionForm = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/api/auctoin/createauction",
+        "http://localhost:3001/api/auction/createauction",
         {
-          itemName,
+          carName,
           email,
-          modelName: itemModel,
+          modelName: carModel,
           modelYear,
           date,
           details,
@@ -50,8 +50,8 @@ const AuctionForm = () => {
     }
 
     // Reset the form
-    setItemName("");
-    setItemModel("");
+    setCarName("");
+    setCarModel("");
     setModelYear("");
     setDate("");
     setDetails("");
@@ -71,33 +71,33 @@ const AuctionForm = () => {
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-              htmlFor="itemName"
+              htmlFor="carName"
             >
-              Item Name
+              Car Name
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="ItemName"
+              id="carName"
               type="text"
-              placeholder="Enter your item name"
-              value={itemName}
-              onChange={(e) => setItemName(e.target.value)}
+              placeholder="Nissan"
+              value={carName}
+              onChange={(e) => setCarName(e.target.value)}
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-              htmlFor="ItemModel"
+              htmlFor="carModel"
             >
-              Item model
+              Car model
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="itemModel"
+              id="carModel"
               type="text"
-              placeholder="Enter your item model"
-              value={itemModel}
-              onChange={(e) => setItemModel(e.target.value)}
+              placeholder="GT-R"
+              value={carModel}
+              onChange={(e) => setCarModel(e.target.value)}
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
@@ -111,7 +111,7 @@ const AuctionForm = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="modelYear"
               type="text"
-              placeholder="Enter your model year"
+              placeholder="2015"
               value={modelYear}
               onChange={(e) => setModelYear(e.target.value)}
             />
@@ -137,15 +137,15 @@ const AuctionForm = () => {
           <div className="w-full px-3">
             <label
               className="block uppercase tracking-wide text-white font-bold mb-2"
-              htmlFor="Details"
+              htmlFor="carDetails"
             >
-              Item Details
+              Car Details
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="Details"
+              id="carDetails"
               type="text"
-              placeholder="Enter item details"
+              placeholder="It is a 4-speed manual..."
               value={details}
               onChange={(e) => setDetails(e.target.value)}
             />
@@ -165,7 +165,7 @@ const AuctionForm = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="startPrice"
               type="text"
-              placeholder="Enter start price"
+              placeholder="1.2 Cr."
               value={startingPrice}
               onChange={(e) => setStartingPrice(e.target.value)}
             />
@@ -203,19 +203,19 @@ const AuctionForm = () => {
           <div className="w-full px-3 mt-2">
             <label
               className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-              htmlFor="item-image"
+              htmlFor="car-image"
             >
               Add Image
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="item-image"
+              id="car-image"
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
             />
             <p className="text-gray-600 text-xs italic mt-2">
-              Upload an image for the item
+              Upload an image for the car
             </p>
           </div>
         </div>
@@ -233,4 +233,4 @@ const AuctionForm = () => {
   );
 };
 
-export default AuctionForm;
+export default Auctionform;

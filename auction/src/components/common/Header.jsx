@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Img from "../assets/logo-black.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -17,11 +18,12 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-black">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center md:justify-between justify-center md:gap-0 gap-1 h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
+              <img className="h-20 w-auto" src={Img} alt="Auction System" />
             </div>
             {/* Links */}
             <div className="flex flex-row gap-0">
